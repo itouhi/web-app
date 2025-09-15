@@ -32,47 +32,58 @@
 ## Summary
 [Extract from feature spec: primary requirement + technical approach from research]
 
-## Technical Context
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
+## Technical Context - Full-Stack Architecture
+**Frontend Stack**: [e.g., React + TypeScript + Next.js, Vue.js + Vite or NEEDS CLARIFICATION]  
+**Backend Stack**: [e.g., Node.js + Express, Python + FastAPI, Mixed Node/Python or NEEDS CLARIFICATION]  
+**Database**: [e.g., PostgreSQL + Prisma, MongoDB + Mongoose or NEEDS CLARIFICATION]  
+**Authentication**: [e.g., Auth0, JWT + refresh tokens, OAuth 2.0 or NEEDS CLARIFICATION]  
+**Testing Strategy**: [e.g., Jest+RTL(frontend), pytest(backend), Playwright(E2E) or NEEDS CLARIFICATION]  
+**API Design**: [e.g., REST with OpenAPI, GraphQL, gRPC or NEEDS CLARIFICATION]  
+**State Management**: [e.g., Redux Toolkit, Zustand, React Context or NEEDS CLARIFICATION]  
+**UI Framework**: [e.g., Tailwind CSS, Material-UI, Chakra UI or NEEDS CLARIFICATION]  
+**Build/Deploy**: [e.g., Docker + GitHub Actions, Vercel + Railway or NEEDS CLARIFICATION]  
+**Monitoring**: [e.g., Application Insights, CloudWatch, Prometheus or NEEDS CLARIFICATION]
 **Project Type**: [single/web/mobile - determines source structure]  
 **Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
 **Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
 **Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
 
-## Constitution Check
+## Constitution Check - Full-Stack Compliance
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-**Simplicity**:
-- Projects: [#] (max 3 - e.g., api, cli, tests)
-- Using framework directly? (no wrapper classes)
-- Single data model? (no DTOs unless serialization differs)
-- Avoiding patterns? (no Repository/UoW without proven need)
+**Multi-Language Harmonization**:
+- Language choices justified? [Node.js: frontend/realtime, Python: data/ML]
+- Common interfaces defined? [REST APIs, JSON protocol, unified logging]
+- Cross-language data consistency? [shared schemas, validation]
+- Performance requirements met? [Node.js async, Python optimization]
 
-**Architecture**:
-- EVERY feature as library? (no direct app code)
-- Libraries listed: [name + purpose for each]
-- CLI per library: [commands with --help/--version/--format]
-- Library docs: llms.txt format planned?
+**GitHub Copilot Integration**:
+- Spec Kit workflow followed? [/specify → /plan → /tasks → implement]
+- AI-generated artifacts ready? [specs, plans, tasks with proper context]
+- Custom commands tested? [/specify, /plan, /tasks working correctly]
+- Code generation prepared? [clear interfaces for AI assistance]
 
-**Testing (NON-NEGOTIABLE)**:
+**Testing Strategy (NON-NEGOTIABLE)**:
 - RED-GREEN-Refactor cycle enforced? (test MUST fail first)
-- Git commits show tests before implementation?
-- Order: Contract→Integration→E2E→Unit strictly followed?
-- Real dependencies used? (actual DBs, not mocks)
-- Integration tests for: new libraries, contract changes, shared schemas?
-- FORBIDDEN: Implementation before test, skipping RED phase
+- Multi-layer testing planned:
+  - **Frontend**: Jest/Vitest + Testing Library (components, hooks)
+  - **Backend**: pytest (Python), Jest (Node.js) for units/integration
+  - **E2E**: Playwright for full user journeys
+  - **API**: Contract testing with OpenAPI schemas
+- Cross-language integration tests? [Node.js ↔ Python communication]
+- Real dependencies used? (actual DBs, not mocks for integration)
 
-**Observability**:
-- Structured logging included?
-- Frontend logs → backend? (unified stream)
-- Error context sufficient?
+**Full-Stack Integration**:
+- API contracts defined? [OpenAPI/GraphQL schemas]
+- Authentication flow documented? [JWT, OAuth, session management]
+- Data consistency strategy? [ACID properties, eventual consistency]
+- Error handling coordinated? [frontend + backend error boundaries]
 
-**Versioning**:
-- Version number assigned? (MAJOR.MINOR.BUILD)
+**Monitoring & Observability**:
+- Structured logging unified? [JSON format across Node.js + Python]
+- Metrics collection planned? [performance, errors, user behavior]
+- Tracing implementation? [request flow across services]
+- Frontend error reporting? [user-facing error handling]
 - BUILD increments on every change?
 - Breaking changes handled? (parallel tests, migration plan)
 

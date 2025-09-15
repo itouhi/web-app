@@ -36,59 +36,96 @@
 - **[P]**: Can run in parallel (different files, no dependencies)
 - Include exact file paths in descriptions
 
-## Path Conventions
-- **Single project**: `src/`, `tests/` at repository root
-- **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
+## Path Conventions - Full-Stack Structure
+- **Frontend**: `frontend/src/`, `frontend/components/`, `frontend/pages/`
+- **Backend Node.js**: `backend/node/src/`, `backend/node/routes/`
+- **Backend Python**: `backend/python/src/`, `backend/python/api/`
+- **Shared**: `shared/types/`, `shared/schemas/`, `shared/utils/`
+- **Tests**: `frontend/tests/`, `backend/tests/`, `e2e/tests/`
+- **Configs**: `configs/`, `docker/`, `.github/workflows/`
+- **Docs**: `docs/api/`, `docs/deployment/`, `docs/architecture/`
 
-## Phase 3.1: Setup
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
+## Phase 3.1: Full-Stack Setup
+- [ ] T001 Create full-stack project structure (frontend/, backend/, shared/)
+- [ ] T002 [P] Initialize frontend project with TypeScript + framework
+- [ ] T003 [P] Initialize backend Node.js project with TypeScript
+- [ ] T004 [P] Initialize backend Python project with FastAPI/Flask
+- [ ] T005 [P] Configure shared type definitions and schemas
+- [ ] T006 [P] Set up Docker containers for development environment
+- [ ] T007 [P] Configure linting (ESLint, Black, Flake8) and formatting (Prettier, Black)
+- [ ] T008 Configure VS Code workspace settings for multi-language development
+- [ ] T009 Set up GitHub Actions for CI/CD pipeline
 
 ## Phase 3.2: Tests First (TDD) ⚠️ MUST COMPLETE BEFORE 3.3
 **CRITICAL: These tests MUST be written and MUST FAIL before ANY implementation**
-- [ ] T004 [P] Contract test POST /api/users in tests/contract/test_users_post.py
-- [ ] T005 [P] Contract test GET /api/users/{id} in tests/contract/test_users_get.py
-- [ ] T006 [P] Integration test user registration in tests/integration/test_registration.py
-- [ ] T007 [P] Integration test auth flow in tests/integration/test_auth.py
+- [ ] T010 [P] Frontend component tests (React Testing Library)
+- [ ] T011 [P] Backend API contract tests (OpenAPI validation)
+- [ ] T012 [P] Database integration tests (actual DB connection)
+- [ ] T013 [P] Authentication flow tests (JWT, session management)
+- [ ] T014 [P] Cross-service integration tests (Node.js ↔ Python)
+- [ ] T015 [P] E2E user journey tests (Playwright)
 
 ## Phase 3.3: Core Implementation (ONLY after tests are failing)
-- [ ] T008 [P] User model in src/models/user.py
-- [ ] T009 [P] UserService CRUD in src/services/user_service.py
-- [ ] T010 [P] CLI --create-user in src/cli/user_commands.py
-- [ ] T011 POST /api/users endpoint
-- [ ] T012 GET /api/users/{id} endpoint
-- [ ] T013 Input validation
-- [ ] T014 Error handling and logging
+### Frontend Development
+- [ ] T016 [P] UI components implementation (TypeScript + React)
+- [ ] T017 [P] State management setup (Redux/Zustand)
+- [ ] T018 [P] API client with TypeScript types
+- [ ] T019 [P] Form validation and error handling
+- [ ] T020 [P] Responsive design implementation
 
-## Phase 3.4: Integration
-- [ ] T015 Connect UserService to DB
-- [ ] T016 Auth middleware
-- [ ] T017 Request/response logging
-- [ ] T018 CORS and security headers
+### Backend Node.js Development  
+- [ ] T021 [P] Express.js API routes setup
+- [ ] T022 [P] Authentication middleware
+- [ ] T023 [P] Request validation and sanitization
+- [ ] T024 [P] Database models (Prisma/TypeORM)
 
-## Phase 3.5: Polish
-- [ ] T019 [P] Unit tests for validation in tests/unit/test_validation.py
-- [ ] T020 Performance tests (<200ms)
-- [ ] T021 [P] Update docs/api.md
-- [ ] T022 Remove duplication
-- [ ] T023 Run manual-testing.md
+### Backend Python Development
+- [ ] T025 [P] FastAPI endpoints implementation
+- [ ] T026 [P] Data processing logic
+- [ ] T027 [P] Database operations (SQLAlchemy)
+- [ ] T028 [P] Background task processing
 
-## Dependencies
-- Tests (T004-T007) before implementation (T008-T014)
-- T008 blocks T009, T015
-- T016 blocks T018
-- Implementation before polish (T019-T023)
+### Cross-Language Integration
+- [ ] T029 Shared API contracts and schemas
+- [ ] T030 Inter-service communication setup
+- [ ] T031 Data consistency validation
 
-## Parallel Example
-```
-# Launch T004-T007 together:
-Task: "Contract test POST /api/users in tests/contract/test_users_post.py"
-Task: "Contract test GET /api/users/{id} in tests/contract/test_users_get.py"
-Task: "Integration test registration in tests/integration/test_registration.py"
-Task: "Integration test auth in tests/integration/test_auth.py"
+## Phase 3.4: Full-Stack Integration
+- [ ] T032 Frontend ↔ Backend API integration
+- [ ] T033 Authentication flow end-to-end
+- [ ] T034 Error handling across all layers
+- [ ] T035 Logging and monitoring setup
+- [ ] T036 Database migration and seeding
+- [ ] T037 Docker containerization and orchestration
+
+## Phase 3.5: Quality & Performance
+- [ ] T038 [P] Unit test coverage (frontend components)
+- [ ] T039 [P] Unit test coverage (backend services)  
+- [ ] T040 [P] Performance optimization and testing
+- [ ] T041 [P] Security audit and penetration testing
+- [ ] T042 [P] Accessibility compliance (WCAG 2.1)
+- [ ] T043 [P] Browser compatibility testing
+- [ ] T044 [P] API documentation generation
+- [ ] T045 Code quality analysis and refactoring
+
+## Dependencies - Full-Stack Context
+- **Phase 3.2** (Tests) before **Phase 3.3** (Implementation)
+- **Frontend tests** (T010) before **UI components** (T016)
+- **Backend tests** (T011-T014) before **API implementation** (T021-T028)
+- **Integration tests** (T014) before **Cross-service setup** (T029-T031)
+- **Core implementation** before **Integration** (T032-T037)
+- **Integration** before **Quality & Performance** (T038-T045)
+
+## Parallel Execution Examples
+```bash
+# Phase 3.2: All test development in parallel
+$ npm run test:frontend & pytest backend/tests/ & npm run test:e2e
+
+# Phase 3.3: Language-specific development
+$ npm run dev:frontend & npm run dev:backend & python -m uvicorn backend.python.main:app
+
+# Phase 3.5: Quality assurance
+$ npm run lint & python -m black . & npm run test:coverage
 ```
 
 ## Notes
