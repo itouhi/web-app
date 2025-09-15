@@ -1,0 +1,8 @@
+{
+    "servers": {
+    "github": {
+      "command": "bash",
+      "args": ["-c", "cd \"${PWD}\" && echo ${PWD} && source .env && exec github-mcp-server stdio"]
+    }
+  }
+}

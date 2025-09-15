@@ -1,0 +1,33 @@
+{
+    "name": "DevContainer", // お好みの名前
+    "build": {
+        "dockerfile": "./Dockerfile" // 相対パス表記
+    },
+    // ローカルPCのsshとaws設定をコンテナにマウント
+    "mounts": [
+        "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+        //"type=volume,source=node_modules,target=${containerWorkspaceFolder}/node_modules,consistency=cached",
+        "source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached"
+    ],
+    // コンテナからローカルのDockerを使用するための設定
+    "remoteEnv": {
+        "DOCKER_HOST": "tcp://host.docker.internal:2375"
+    },
+    // コンテナ内のユーザー設定
+    "remoteUser": "vscode",
+    // .envファイルの読み込み設定
+    //"runArgs": [
+    //    "--env-file",
+    //    "${localWorkspaceFolder}/.env"
+    //cd],
+    // vscodeの追加設定
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "MS-CEINTL.vscode-language-pack-ja",
+                "amazonwebservices.aws-toolkit-vscode",
+                "ms-azuretools.vscode-containers"
+            ]
+        }
+    }
+}
