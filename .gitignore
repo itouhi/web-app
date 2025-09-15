@@ -131,6 +131,7 @@ dmypy.json
 .vscode/*
 !.vscode/mcp.json
 !.vscode/settings.json
+!.vscode/spec-kit-settings.md
 .idea/
 *.swp
 *.swo
